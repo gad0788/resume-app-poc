@@ -1,0 +1,26 @@
+
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build images
+        run: edocker build -t gad0788/portfolio:v2.0 .
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          docker login -u gad0788 -p ${{ secrets.REGISTRY_PASS }}
+          docker push gad0788/portfolio:v2.0
