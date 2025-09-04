@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build images
-        run: edocker build -t gad0788/portfolio:v2.0 .
+        run: docker build -t gad0788/portfolio:v2.0 .
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
